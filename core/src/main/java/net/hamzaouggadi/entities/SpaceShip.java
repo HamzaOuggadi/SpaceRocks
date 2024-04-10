@@ -9,7 +9,7 @@ public class SpaceShip extends BaseActor {
 
     private Thrusters thrusters;
     private Shield shield;
-    private int shieldPower;
+    public int shieldPower;
 
     public SpaceShip(float x, float y, Stage stage) {
 
@@ -72,5 +72,16 @@ public class SpaceShip extends BaseActor {
         setPosition(MathUtils.random(800), MathUtils.random(800));
         Warp warp2 = new Warp(0, 0, this.getStage());
         warp2.centerAtActor(this);
+    }
+
+    public void shoot() {
+        if (getStage() == null) {
+            return;
+        }
+
+        Laser laser = new Laser(0, 0, getStage());
+        laser.centerAtActor(this);
+        laser.setRotation(this.getRotation());
+        laser.setMotionAngle(this.getRotation());
     }
 }

@@ -1,6 +1,7 @@
 package net.hamzaouggadi.screens;
 
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 
 import net.hamzaouggadi.entities.BaseActor;
 import net.hamzaouggadi.entities.Explosion;
@@ -10,6 +11,7 @@ import net.hamzaouggadi.entities.SpaceShip;
 public class LevelScreen extends BaseScreen {
 
     private SpaceShip spaceShip;
+    private boolean gameOver;
 
     @Override
     public void initialize() {
@@ -17,6 +19,7 @@ public class LevelScreen extends BaseScreen {
         space.loadTexture("imgs/space.png");
         space.setSize(800, 600);
         BaseActor.setWorldBounds(space);
+        gameOver = false;
 
         spaceShip = new SpaceShip(400,300, mainStage);
 
@@ -42,6 +45,12 @@ public class LevelScreen extends BaseScreen {
                     boom.centerAtActor(spaceShip);
                     spaceShip.remove();
                     spaceShip.setPosition(-1000, -1000);
+                    BaseActor messageLose = new BaseActor(0, 0, uiStage);
+                    messageLose.loadTexture("imgs/message-lose.png");
+                    messageLose.centerAtPosition(400, 300);
+                    messageLose.setOpacity(0);
+                    messageLose.addAction(Actions.fadeIn(1));
+                    gameOver = true;
                 } else {
                     spaceShip.shieldPower -= 34;
                     Explosion boomRock = new Explosion(0, 0, mainStage);
@@ -58,6 +67,15 @@ public class LevelScreen extends BaseScreen {
                     rockActor.remove();
                 }
             }
+        }
+
+        if (!gameOver && BaseActor.count(mainStage, "net.hamzaouggadi.entities.Rock") == 0) {
+            BaseActor messageWin = new BaseActor(0, 0, uiStage);
+            messageWin.loadTexture("imgs/message-win.png");
+            messageWin.centerAtPosition(400, 300);
+            messageWin.setOpacity(0);
+            messageWin.addAction(Actions.fadeIn(1));
+            gameOver = true;
         }
 
     }

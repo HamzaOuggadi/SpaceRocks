@@ -1,5 +1,7 @@
 package net.hamzaouggadi.screens;
 
+import com.badlogic.gdx.Input;
+
 import net.hamzaouggadi.entities.BaseActor;
 import net.hamzaouggadi.entities.SpaceShip;
 
@@ -22,4 +24,11 @@ public class LevelScreen extends BaseScreen {
 
     }
 
+    @Override
+    public boolean keyDown(int keycode) {
+        if (keycode == Input.Keys.SPACE) {
+            spaceShip.warp();
+        }
+        return false;
+    }
 }

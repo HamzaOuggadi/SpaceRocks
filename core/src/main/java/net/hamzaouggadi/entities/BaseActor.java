@@ -13,13 +13,14 @@ import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import java.util.ArrayList;
 
-public class BaseActor extends Actor {
+public class BaseActor extends Group {
 
     private Animation<TextureRegion> animation;
     private float elapsedTime;
@@ -59,7 +60,6 @@ public class BaseActor extends Actor {
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
-        super.draw(batch, parentAlpha);
 
         Color color = getColor();
         batch.setColor(color.r, color.g, color.b, color.a);
@@ -72,6 +72,8 @@ public class BaseActor extends Actor {
                 getScaleX(), getScaleY(),
                 getRotation());
         }
+
+        super.draw(batch, parentAlpha);
     }
 
     public void applyPhysics(float dt) {

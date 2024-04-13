@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import net.hamzaouggadi.game.BaseGame;
 import net.hamzaouggadi.screens.LevelScreen;
+import net.hamzaouggadi.screens.MenuScreen;
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
 public class SpaceRocks extends BaseGame {
@@ -15,7 +16,7 @@ public class SpaceRocks extends BaseGame {
     @Override
     public void create() {
         super.create();
-        setActiveScreen(new LevelScreen());
+        setActiveScreen(new MenuScreen());
     }
 
 }

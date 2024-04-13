@@ -63,6 +63,13 @@ public class LevelScreen extends BaseScreen {
                 if (laserActor.overlaps(rockActor)) {
                     Explosion boomLaser = new Explosion(0, 0, mainStage);
                     boomLaser.centerAtActor(rockActor);
+                    if (rockActor.getScaleX() >= 0.6f) {
+                        for (int i=0; i<2; i++) {
+                            Rock miniRock = new Rock(0, 0, mainStage);
+                            miniRock.setScale(rockActor.getScaleX()/2);
+                            miniRock.centerAtActor(rockActor);
+                        }
+                    }
                     laserActor.remove();
                     rockActor.remove();
                 }

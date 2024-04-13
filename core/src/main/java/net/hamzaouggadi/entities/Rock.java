@@ -20,6 +20,9 @@ public class Rock extends BaseActor {
         setMaxSpeed(50 + random);
         setDeceleration(0);
 
+        float randomScale = MathUtils.random(0.5f, 1f);
+        setScale(randomScale, randomScale);
+
         setMotionAngle(MathUtils.random(360));
     }
 
